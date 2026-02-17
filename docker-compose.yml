@@ -5,7 +5,7 @@ services:
     build: .
     container_name: porto-container
     ports:
-      - "8080:80" # Diubah ke 8080 agar tidak bentrok dengan Nginx Host (SSL)
+      - "8080:80" 
     networks:
       app_net:
         aliases:

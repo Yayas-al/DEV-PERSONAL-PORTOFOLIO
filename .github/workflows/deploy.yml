@@ -28,19 +28,20 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Execute remote ssh commands
-        uses: appleboy/ssh-action@master
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Mengirim file konfigurasi terbaru dari laptop ke EC2
+      - name: Copy docker-compose and configs to EC2
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/porto-test:latest
-            docker stop porto-container || true
-            docker rm porto-container || true
-            docker run -d -p 8080:80 --name porto-container ${{ secrets.DOCKERHUB_USERNAME }}/porto-test:latest
+          source: "docker-compose.yml,monitoring/prometheus/prometheus.yml"
+          target: "~/dev_personal_portofolio"
 
-
+      # Menjalankan perintah deployment di EC2
       - name: Execute remote ssh commands
         uses: appleboy/ssh-action@master
         with:
@@ -49,10 +50,17 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/dev_personal_portofolio
-
+            
+            # Login ke Docker Hub di sisi server
             echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-
+            
+            # Berhenti dan hapus container lama jika masih ada yang jalan manual
+            docker stop porto-container || true
+            docker rm porto-container || true
+            
+            # Jalankan semua layanan menggunakan Docker Compose
             docker-compose pull
             docker-compose up -d --remove-orphans
-
+            
+            # Bersihkan image lama agar disk t2.micro tidak penuh
             docker image prune -f
