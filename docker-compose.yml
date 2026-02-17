@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    image: yasxinn16/porto-test:latest
     container_name: porto-container
     ports:
       - "8080:80" 
