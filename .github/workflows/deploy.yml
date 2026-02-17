@@ -39,3 +39,20 @@ jobs:
             docker stop porto-container || true
             docker rm porto-container || true
             docker run -d -p 8080:80 --name porto-container ${{ secrets.DOCKERHUB_USERNAME }}/porto-test:latest
+
+
+      - name: Execute remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/dev_personal_portofolio
+
+            echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+            docker-compose pull
+            docker-compose up -d --remove-orphans
+
+            docker image prune -f
