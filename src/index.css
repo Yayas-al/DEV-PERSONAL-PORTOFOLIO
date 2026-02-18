@@ -21,13 +21,13 @@
 
   --color-highlight: #f5a623;
   --color-surface: #1a2329;
-};
+}
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
-  
+
   button {
     cursor: pointer;
   }
@@ -43,15 +43,14 @@
   }
 }
 
-
-@layer components{
-  .glass{
+@layer components {
+  .glass {
     background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
     backdrop-filter: blur(16px);
     border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
   }
 
-  .glass-strong{
+  .glass-strong {
     background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
     backdrop-filter: blur(24px);
     border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
@@ -69,9 +68,9 @@
   }
 }
 
-@layer utilities{
+@layer utilities {
   @keyframes fade-in {
-    from{
+    from {
       opacity: 0;
       transform: translateY(20px);
       filter: blur(10px);
@@ -79,7 +78,7 @@
     to {
       opacity: 1;
       transform: translateY(0);
-      filter: blur(0px);
+      filter: blur(0);
     }
   }
 
@@ -99,9 +98,29 @@
     }
   }
 
-  .animate-fade-in{
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-fade-in {
     animation: fade-in 0.8s ease-out both;
   }
+
   .animate-float {
     animation: float 4s ease-in-out infinite;
   }
