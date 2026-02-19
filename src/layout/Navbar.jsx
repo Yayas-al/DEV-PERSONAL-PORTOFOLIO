@@ -34,7 +34,7 @@ export const Navbar = () => {
           href="#"
           className="text-xl font-bold tracking-tight hover:text-primary"
         >
-          Xinn<span className="text-primary">.</span>
+          PM<span className="text-primary">.</span>
         </a>
 
         {/* Desktop Nav */}
