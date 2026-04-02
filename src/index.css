@@ -1,31 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0f1418;
-  --color-foreground: #f0f2f5;
+  --color-background: #FDF8E1;
+  --color-foreground: #2D2D2D;
 
-  --color-card: #141a1f;
+  --color-card: #FFFFFF;
 
-  --color-primary: #20b2a6;
-  --color-primary-foreground: #ffffff;
+  --color-primary: #86D2D2;
+  --color-primary-foreground: #2D2D2D;
 
-  --color-secondary: #1f2830;
-  --color-secondary-foreground: #20b2a6;
+  --color-secondary: #F9B89B;
+  --color-secondary-foreground: #2D2D2D;
 
-  --color-muted: #252e37;
-  --color-muted-foreground: #7a8491;
+  --color-muted: #F3EEC1;
+  --color-muted-foreground: #5A5A5A;
 
-  --color-border: #242b32;
+  --color-border: #2D2D2D;
 
-  --radius: 0.75rem;
+  --radius: 12px;
 
-  --color-highlight: #f5a623;
-  --color-surface: #1a2329;
+  --color-highlight: #F2D067;
+  --color-surface: #FDF8E1;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+  
+  /* Eksekusi murni 80% Scale tanpa merusak struktur layout (menggunakan rem base scaling) */
+  @media (min-width: 1024px) {
+    html {
+      font-size: 80%;
+    }
   }
 
   button {
@@ -44,27 +51,25 @@
 }
 
 @layer components {
-  .glass {
-    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
-    backdrop-filter: blur(16px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  .neo-card {
+    background-color: var(--color-card);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: 4px 4px 0px 0px var(--color-border);
+    transition: all 0.2s ease-in-out;
   }
 
-  .glass-strong {
-    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
-    backdrop-filter: blur(24px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+  .neo-btn {
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: 4px 4px 0px 0px var(--color-border);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
   }
 
-  .glow-text {
-    text-shadow: 0 0 30px
-      color-mix(in srgb, var(--color-primary) 50%, transparent);
-  }
-
-  .glow-border {
-    box-shadow: 0 0 20px
-        color-mix(in srgb, var(--color-primary) 20%, transparent),
-      inset 0 0 20px color-mix(in srgb, var(--color-primary) 5%, transparent);
+  .neo-btn:hover {
+    box-shadow: 2px 2px 0px 0px var(--color-border);
+    transform: translate(2px, 2px);
   }
 }
 
@@ -75,6 +80,7 @@
       transform: translateY(20px);
       filter: blur(10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -83,26 +89,32 @@
   }
 
   @keyframes slow-drift {
+
     0%,
     100% {
       transform: translate(0, 0);
     }
+
     25% {
       transform: translate(20px, -30px);
     }
+
     50% {
       transform: translate(-15px, -20px);
     }
+
     75% {
       transform: translate(30px, 10px);
     }
   }
 
   @keyframes float {
+
     0%,
     100% {
       transform: translateY(0);
     }
+
     50% {
       transform: translateY(-10px);
     }
@@ -112,6 +124,7 @@
     0% {
       transform: translateX(0);
     }
+
     100% {
       transform: translateX(-50%);
     }
@@ -161,6 +174,7 @@
     0% {
       stroke-dashoffset: 400;
     }
+
     100% {
       stroke-dashoffset: -550;
     }
@@ -177,8 +191,7 @@
   }
 
   .timeline-glow {
-    box-shadow: 0 0 40px
-        color-mix(in srgb, var(--color-primary) 35%, transparent),
+    box-shadow: 0 0 40px color-mix(in srgb, var(--color-primary) 35%, transparent),
       0 0 80px color-mix(in srgb, var(--color-primary) 25%, transparent);
   }
 }

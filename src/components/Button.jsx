@@ -1,7 +1,7 @@
 
 
 export const Button = ({className, size = "default", children}) =>{
-    const baseClasses = "relative flex items-center justify-center rounded-full font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary bg-primary text-primary-foreground hover:bg-primary/90 shadow-primary/25"
+    const baseClasses = "relative flex items-center justify-center neo-btn font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-primary bg-highlight text-foreground hover:bg-highlight/90"
 
     const sizeClassless ={
         sm:"px-4 py-2 text-sm",
