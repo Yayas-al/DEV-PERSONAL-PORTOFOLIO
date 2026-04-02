@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import { HeroSectionModal } from "./ProjectModal/HeroSectionModal";
 import { StatsSectionModal } from "./ProjectModal/StatsSectionModal";
 import { FeaturesSectionModal } from "./ProjectModal/FeaturesSectionModal";
+import { TechStackSectionModal } from "./ProjectModal/TechStackSectionModal";
 
 export const ProjectDetailModal = ({ project, onClose }) => {
   if (!project) return null;
@@ -36,6 +37,9 @@ export const ProjectDetailModal = ({ project, onClose }) => {
 
             {/* FEATURES SECTION */}
             <FeaturesSectionModal project={project} />
+
+            {/* TECH STACK LIST SECTION */}
+            <TechStackSectionModal project={project} />
 
           </div>
         </div>

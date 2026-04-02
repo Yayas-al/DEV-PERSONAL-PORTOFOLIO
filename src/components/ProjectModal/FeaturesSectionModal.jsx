@@ -16,11 +16,12 @@ export const FeaturesSectionModal = ({ project }) => {
 
   return (
     <div className="mx-[-2.5rem] md:mx-[-4rem] mb-[-3rem] md:mb-[-3.5rem] mt-10 border-t-[3px] border-black bg-[#A7D7D1] p-10 md:p-16">
-      <div className="grid lg:grid-cols-12 gap-16 items-start">
+      <div className="grid lg:grid-cols-12 gap-16">
         
         {/* Left Column: Text & Image */}
-        <div className="lg:col-span-5 flex flex-col space-y-8">
-          <div>
+        <div className="lg:col-span-5">
+          <div className="flex flex-col space-y-8 sticky top-12 pb-10 md:pb-16">
+            <div>
             <h2 className="text-4xl md:text-5xl font-serif font-black text-black leading-tight mb-6">
               Unlock Our Fantastic Features!
             </h2>
@@ -66,10 +67,11 @@ export const FeaturesSectionModal = ({ project }) => {
                   </div>
                )}
           </div>
+          </div>
         </div>
 
         {/* Right Column: Stack of Cards */}
-        <div className="lg:col-span-7 flex flex-col space-y-5 lg:-mt-4 relative z-10">
+        <div className="lg:col-span-7 flex flex-col justify-center space-y-5 relative z-10 h-full">
           {steps.map((step, idx) => {
             const Icon = iconMap[step.tag] || Lightbulb;
             const isHighlighted = idx === 0;

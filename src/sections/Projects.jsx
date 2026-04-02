@@ -5,6 +5,14 @@ import { portfolioData } from "../data/portfolioData";
 
 export const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(portfolioData.length / itemsPerPage);
+  const currentProjects = portfolioData.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
 
   return (
     <>
@@ -17,7 +25,7 @@ export const Projects = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 relative z-10">
-              {portfolioData.map((project) => (
+              {currentProjects.map((project) => (
                 <div key={project.id} className="neo-card bg-card p-8 flex flex-col gap-6 hover:shadow-[2px_2px_0_0_var(--color-border)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all relative">
                    {/* Top accent dash line */}
                    <div className={`absolute top-0 left-8 h-1 ${project.accentBg} w-16`} />
@@ -57,6 +65,38 @@ export const Projects = () => {
                 </div>
               ))}
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="mt-12 flex justify-center items-center gap-4">
+                 <button 
+                   onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
+                   disabled={currentPage === 0}
+                   className="p-3 bg-white border-[2px] border-black shadow-[2px_2px_0_#000000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_#000000] rounded-lg disabled:opacity-50 disabled:pointer-events-none transition-all flex items-center justify-center cursor-pointer"
+                 >
+                   <ArrowRight className="w-5 h-5 rotate-180 text-black" />
+                 </button>
+                 
+                 <div className="flex gap-2">
+                   {Array.from({ length: totalPages }).map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCurrentPage(i)}
+                        className={`w-3 h-3 rounded-full border-2 border-black cursor-pointer transition-colors ${currentPage === i ? "bg-black" : "bg-white"}`}
+                      />
+                   ))}
+                 </div>
+
+                 <button 
+                   onClick={() => setCurrentPage(p => Math.min(totalPages - 1, p + 1))}
+                   disabled={currentPage === totalPages - 1}
+                   className="p-3 bg-white border-[2px] border-black shadow-[2px_2px_0_#000000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_#000000] rounded-lg disabled:opacity-50 disabled:pointer-events-none transition-all flex items-center justify-center cursor-pointer"
+                 >
+                   <ArrowRight className="w-5 h-5 text-black" />
+                 </button>
+              </div>
+            )}
+            
           </div>
         </div>
       </section>

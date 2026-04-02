@@ -202,4 +202,94 @@ export const portfolioData = [
     liveUrl: "#",
     githubUrl: "#",
   },
+  {
+    id: "nlp-bot",
+    title: "NLP Customer Service Bot",
+    stat: "AI • Automation",
+    accentBg: "bg-blue-300",
+    mockupBg: "bg-blue-300/20",
+    desc: "Built a custom AI chatbot that handled 45% of tier-1 support queries automatically, reducing response time from 4 hours to 3 seconds.",
+    heroDesc: "A smart assistant that never sleeps. Using advanced Natural Language Processing, this bot accurately interprets customer intents, instantly providing tracking updates and FAQs. It successfully deflected 45% of incoming tickets.",
+    tags: ["Python", "AWS", "Docker", "Git"],
+    metrics: [
+      { value: "45%", label: "Deflection Rate" },
+      { value: "3s", label: "Response" },
+      { value: "5k+", label: "Daily Chats" },
+      { value: "$120k", label: "Saved Yearly" }
+    ],
+    steps: [
+      {
+        tag: "Impact",
+        title: "Key Insights",
+        desc: "Sebanyak 45% dari tiket harian adalah pertanyaan berulang soal resi dan jam operasi. Bot mengotomasi ini, membiarkan agen fokus ke keluhan retur."
+      },
+      {
+        tag: "Technical",
+        title: "Model Development",
+        desc: "Menggunakan pipeline Transformer ringan di-deploy dalam container Docker via AWS."
+      }
+    ],
+    liveUrl: "#",
+    githubUrl: "#"
+  },
+  {
+    id: "sales-forecast",
+    title: "Sales Forecasting Engine",
+    stat: "Machine Learning",
+    accentBg: "bg-green-300",
+    mockupBg: "bg-green-300/20",
+    desc: "Designed an automated sales prediction system with an MAPE of 8.5%, allowing the supply chain team to reduce overstock by 15%.",
+    heroDesc: "No more guesswork. By leveraging historical seasonality, promotion schedules, and macroeconomic signals, this engine accurately forecasts quarterly sales demand. This allows precise inventory stocking.",
+    tags: ["Python", "Pandas", "Scikit-learn", "Power BI", "SQL Server"],
+    metrics: [
+      { value: "8.5%", label: "Error (MAPE)" },
+      { value: "-15%", label: "Overstock" },
+      { value: "12", label: "Categories" },
+      { value: "Auto", label: "Pipeline" }
+    ],
+    steps: [
+      {
+        tag: "Business",
+        title: "Business Problem",
+        desc: "Gudang sering penuh oleh barang slow-moving karena prediksi demand manual staf."
+      },
+      {
+        tag: "Technical",
+        title: "Time Series & Dashboard",
+        desc: "Model ARIMA dan Random Forest digabung. Hasil akhirnya didorong ke Power BI untuk dipantau otomatis harian."
+      }
+    ],
+    liveUrl: "#",
+    githubUrl: "#"
+  },
+  {
+    id: "recommendation-system",
+    title: "Item Recommendation Engine",
+    stat: "Personalization",
+    accentBg: "bg-purple-300",
+    mockupBg: "bg-purple-300/20",
+    desc: "Implemented a collaborative filtering recommendation engine that boosted average cart value by $12 per user.",
+    heroDesc: "Hyper-personalized shopping experience. This engine analyzes millions of user-item interactions to suggest products users didn't even know they wanted, leading to higher engagement and a 14% increase in sales.",
+    tags: ["SQL", "NumPy", "AWS", "Jira", "Notion"],
+    metrics: [
+      { value: "+$12", label: "Avg Cart Value" },
+      { value: "+14%", label: "Conversion" },
+      { value: "10M+", label: "Interactions" },
+      { value: "A/B", label: "Tested" }
+    ],
+    steps: [
+      {
+        tag: "Overview",
+        title: "Data Overview",
+        desc: "10 juta log interaksi produk dalam 6 bulan terakhir diekstrak dari Redshift AWS."
+      },
+      {
+        tag: "Analysis",
+        title: "Collaborative Filtering",
+        desc: "Matriks faktorisasi merekomendasikan item pelengkap yang sebelumnya tidak terlayani dengan fitur 'Frequently bought together'."
+      }
+    ],
+    liveUrl: "#",
+    githubUrl: "#"
+  }
 ];
