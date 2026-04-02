@@ -4,6 +4,10 @@ import { AnimatedBorderButton } from '../components/AnimatedBorderButton';
 import { profileData } from '../data/profileData';
 
 export const Hero = () => {
+    const scrollToContact = () => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <section className="relative min-h-screen flex items-center overflow-hidden">
             <div className="absolute inset-0 bg-background" />
@@ -34,7 +38,7 @@ export const Hero = () => {
                         </div>
 
                         <div className='flex flex-wrap gap-4 animate-fade-in animation-delay-300'>
-                            <Button size="lg">
+                            <Button size="lg" onClick={scrollToContact}>
                                 {profileData.contactText} <ArrowRight className='w-5 h-5' />
                             </Button>
                             <AnimatedBorderButton />
@@ -43,7 +47,7 @@ export const Hero = () => {
                         <div className='flex items-center gap-4 animate-fade-in animation-delay-400'>
                             <span className='text-sm text-muted-foreground'>Follow Me: </span>
                             {profileData.socials.map((social, idx) => (
-                                <a key={idx} href={social.href} className='p-2 neo-btn bg-card text-foreground hover:bg-primary transition-all duration-300'>
+                                <a key={idx} href={social.href} target="_blank" rel="noopener noreferrer" className='p-2 neo-btn bg-card text-foreground hover:bg-primary transition-all duration-300'>
                                     {<social.icon className='w-5 h-5' />}
                                 </a>
                             ))}

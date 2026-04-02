@@ -1,6 +1,6 @@
 
 
-export const Button = ({className, size = "default", children}) =>{
+export const Button = ({className, size = "default", children, ...props}) =>{
     const baseClasses = "relative flex items-center justify-center neo-btn font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-primary bg-highlight text-foreground hover:bg-highlight/90"
 
     const sizeClassless ={
@@ -10,7 +10,7 @@ export const Button = ({className, size = "default", children}) =>{
     }
     const classes = `${baseClasses} ${sizeClassless[size]} ${className}`;
     return(
-        <button className={classes}>
+        <button className={classes} {...props}>
             <span className="relative  flex items-center justify-center gap-2">
                 {children}
             </span>

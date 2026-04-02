@@ -78,10 +78,10 @@ export const TechStackSectionModal = ({ project }) => {
   if (!tags || tags.length === 0) return null;
 
   return (
-    <div className="mx-[-2.5rem] md:mx-[-4rem] mb-[-3rem] md:mb-[-3.5rem] border-t-[3px] border-black bg-[#FDFBF0] p-10 md:p-16 flex flex-col items-center text-center">
+    <div className="w-full border-t-[3px] border-black/10 bg-[#FDFBF0] py-16 md:py-20 flex flex-col items-center text-center">
         
        {/* HEADINGS */}
-       <div className="max-w-2xl mx-auto mb-12">
+       <div className="max-w-2xl mx-auto mb-12 px-8">
          <h2 className="text-3xl md:text-5xl font-serif font-black text-black leading-tight mb-4 tracking-tight">
            Technology Stack
          </h2>
@@ -91,10 +91,26 @@ export const TechStackSectionModal = ({ project }) => {
        </div>
 
        {/* GRID COMPONENT */}
-       <div className="flex flex-wrap justify-center gap-4 md:gap-6 max-w-4xl w-full mb-12">
+       <div className="flex flex-wrap justify-center gap-4 md:gap-6 max-w-4xl w-full mb-16 px-8">
           {tags.map((tag, idx) => (
              <TechBox key={idx} name={tag} />
           ))}
+       </div>
+
+       {/* ── TRANSITION BAND: Deep Dive starts below ── */}
+       <div className="w-full flex flex-col items-center gap-4 pt-4 border-t-[2px] border-dashed border-black/15">
+         <p className="text-[11px] font-black uppercase tracking-[0.35em] text-slate-400">
+           Deep Dive
+         </p>
+         {/* animated chevron stack */}
+         <div className="flex flex-col items-center gap-1">
+           <svg width="24" height="14" viewBox="0 0 24 14" fill="none" className="animate-bounce text-slate-300">
+             <path d="M2 2L12 12L22 2" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+           </svg>
+           <svg width="24" height="14" viewBox="0 0 24 14" fill="none" className="text-slate-200 -mt-2">
+             <path d="M2 2L12 12L22 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+           </svg>
+         </div>
        </div>
 
     </div>

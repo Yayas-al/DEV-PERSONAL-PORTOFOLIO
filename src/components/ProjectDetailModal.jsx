@@ -3,6 +3,8 @@ import { HeroSectionModal } from "./ProjectModal/HeroSectionModal";
 import { StatsSectionModal } from "./ProjectModal/StatsSectionModal";
 import { FeaturesSectionModal } from "./ProjectModal/FeaturesSectionModal";
 import { TechStackSectionModal } from "./ProjectModal/TechStackSectionModal";
+import { ProjectSectionModal } from "./ProjectModal/ProjectSectionModal";
+import { CtaSectionModal } from "./ProjectModal/CtaSectionModal";
 
 export const ProjectDetailModal = ({ project, onClose }) => {
   if (!project) return null;
@@ -25,23 +27,27 @@ export const ProjectDetailModal = ({ project, onClose }) => {
           <X size={22} strokeWidth={3} className="text-black" />
         </button>
 
-        {/* Inner Layout */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="h-full min-h-full flex flex-col px-10 md:px-16 py-12 md:py-14">
-            
-            {/* HERO SECTION */}
+        {/* Scrollable content — NO outer padding; each section controls its own */}
+        <div className="flex-1 overflow-y-auto scroll-smooth">
+
+          {/* ── ZONE 1: Hero — keeps paddding ─────────────────────── */}
+          <div className="px-10 md:px-16 py-12 md:py-14 bg-[#FDFBF0]">
             <HeroSectionModal project={project} />
-
-            {/* STATS SECTION */}
             <StatsSectionModal project={project} />
-
-            {/* FEATURES SECTION */}
-            <FeaturesSectionModal project={project} />
-
-            {/* TECH STACK LIST SECTION */}
-            <TechStackSectionModal project={project} />
-
           </div>
+
+          {/* ── ZONE 2: Features — edge-to-edge ───────────────────── */}
+          <FeaturesSectionModal project={project} />
+
+          {/* ── ZONE 3: Tech Stack — edge-to-edge ─────────────────── */}
+          <TechStackSectionModal project={project} />
+
+          {/* ── ZONE 4: Deep-Dive Sections — each full-bleed ──────── */}
+          <ProjectSectionModal project={project} />
+
+          {/* ── ZONE 5: CTA / Let's Connect — dark footer ──────────── */}
+          <CtaSectionModal />
+
         </div>
       </div>
     </div>

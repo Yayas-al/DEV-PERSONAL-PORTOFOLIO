@@ -8,6 +8,10 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -49,7 +53,7 @@ export const Navbar = () => {
 
         {/* CTA Button */}
         <div className="hidden md:block">
-          <Button size="sm">Contact Me</Button>
+          <Button size="sm" onClick={scrollToContact}>Contact Me</Button>
         </div>
 
         {/* Mobile Menu Button - Using Neo brutally blocky icon */}
@@ -77,7 +81,10 @@ export const Navbar = () => {
             ))}
 
             <div className="mt-4">
-              <Button className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="w-full" onClick={() => {
+                setIsMobileMenuOpen(false);
+                scrollToContact();
+              }}>
                 Contact Me
               </Button>
             </div>

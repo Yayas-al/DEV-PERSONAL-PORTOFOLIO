@@ -1,12 +1,49 @@
-import { Lightbulb, Briefcase, Database, LineChart, Monitor, Code } from "lucide-react";
+import { Lightbulb, Briefcase, Database, LineChart, Monitor, Code, AlertOctagon, FileSearch } from "lucide-react";
 
 const iconMap = {
-  Impact: Lightbulb,
-  Business: Briefcase,
+  Insight: Lightbulb,
+  Problem: AlertOctagon,
   Overview: Database,
   Analysis: LineChart,
-  Visual: Monitor,
+  Dashboard: Monitor,
   Technical: Code,
+  Audit: FileSearch,
+  Recommendation: Briefcase
+};
+
+const staticFeaturesMap = {
+  Insight: {
+    title: "Key Insights",
+    desc: "Menyajikan temuan paling berdampak dari analisis data — pola tersembunyi, anomali, dan peluang bisnis yang ditemukan selama eksplorasi."
+  },
+  Recommendation: {
+    title: "Rekomendasi Bisnis",
+    desc: "Menampilkan langkah-langkah aksi strategis yang disusun berdasarkan insight — rekomendasi konkret yang siap dieksekusi oleh tim bisnis."
+  },
+  Overview: {
+    title: "Data Overview",
+    desc: "Memberikan gambaran umum tentang sumber data, volume, dan cakupan dataset yang digunakan dalam proyek ini."
+  },
+  Analysis: {
+    title: "Exploratory Data Analysis (EDA)",
+    desc: "Menampilkan proses eksplorasi data — distribusi, korelasi, pola musiman, dan anomali yang ditemukan melalui analisis statistik."
+  },
+  Technical: {
+    title: "Technical Pipeline",
+    desc: "Menjelaskan arsitektur teknis yang digunakan — tools, pipeline, infrastruktur, dan alur kerja engineering di balik proyek."
+  },
+  Dashboard: {
+    title: "Dashboard & Visualization",
+    desc: "Demonstrasi interaktif dari dashboard analitik yang telah dibangun secara visual."
+  },
+  Problem: {
+    title: "Problem Statement",
+    desc: "Mendefinisikan akar permasalahan bisnis yang diselesaikan melalui pendekatan berbasis data."
+  },
+  Audit: {
+    title: "Data Quality Audit",
+    desc: "Laporan detail mengenai kualitas data mentah dan proses pembersihan data yang dilakukan."
+  }
 };
 
 export const FeaturesSectionModal = ({ project }) => {
@@ -15,8 +52,8 @@ export const FeaturesSectionModal = ({ project }) => {
   if (!steps || steps.length === 0) return null;
 
   return (
-    <div className="mx-[-2.5rem] md:mx-[-4rem] mb-[-3rem] md:mb-[-3.5rem] mt-10 border-t-[3px] border-black bg-[#A7D7D1] p-10 md:p-16">
-      <div className="grid lg:grid-cols-12 gap-16">
+    <div className="w-full bg-[#A7D7D1] p-10 md:p-16">
+      <div className="grid lg:grid-cols-12 gap-16 max-w-[87.5rem] mx-auto">
         
         {/* Left Column: Text & Image */}
         <div className="lg:col-span-5">
@@ -28,14 +65,14 @@ export const FeaturesSectionModal = ({ project }) => {
             <p className="text-base text-gray-800 font-medium leading-relaxed mb-8 pr-4">
               Explore our dynamic and effective tools that make enhancing your project's performance effortless and enjoyable!
             </p>
-            <button className="px-7 py-3 rounded-xl bg-[#FFDE59] border-[2.5px] border-black shadow-[4px_4px_0_#000000] text-sm font-black text-black hover:translate-x-[2px] hover:translate-y-[2px] transition-all hover:shadow-none">
+            <button className="px-7 py-3 rounded-xl bg-[#FFDE59] border-[2.5px] border-black shadow-[4px_4px_0_#000000] text-sm font-black text-black hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer hover:shadow-none">
               Learn More
             </button>
           </div>
 
-          <div className="w-full mt-8 rounded-[1.5rem] border-[3px] border-black shadow-[0.75rem_0.75rem_0_#000000] bg-white overflow-hidden aspect-square flex items-center justify-center relative">
+          <div className="w-full mt-8 rounded-[1.5rem] border-[3px] border-black shadow-[0.75rem_0.75rem_0_#000000] bg-white overflow-hidden aspect-square flex items-center justify-center relative transition-all duration-300">
                {/* Decorative lines like in the image */}
-               <div className="absolute inset-0 opacity-20 pointer-events-none stroke-black/50 overflow-hidden">
+               <div className="absolute inset-0 opacity-20 pointer-events-none stroke-black/50 overflow-hidden z-0">
                  <svg width="100%" height="100%">
                     <line x1="0" y1="100%" x2="100%" y2="0" stroke="currentColor" strokeWidth="2" />
                  </svg>
@@ -74,26 +111,27 @@ export const FeaturesSectionModal = ({ project }) => {
         <div className="lg:col-span-7 flex flex-col justify-center space-y-5 relative z-10 h-full">
           {steps.map((step, idx) => {
             const Icon = iconMap[step.tag] || Lightbulb;
-            const isHighlighted = idx === 0;
 
             return (
               <div 
                 key={idx} 
-                className={`p-6 rounded-xl border-[2.5px] border-black flex items-start gap-6 transition-transform hover:-translate-y-1 ${
-                  isHighlighted 
-                    ? "bg-[#FFC6B6] shadow-[6px_6px_0_#000000]" 
-                    : "bg-[#FFF9EB] shadow-[4px_4px_0_#000000] opacity-95 hover:opacity-100"
-                }`}
+                onClick={() => {
+                  const el = document.getElementById(`section-${step.tag}`);
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className={`group p-6 rounded-xl border-[2.5px] border-black flex items-start gap-6 cursor-pointer transition-all duration-300 bg-[#FFF9EB] shadow-[4px_4px_0_#000000] hover:-translate-y-1 hover:bg-[#FFC6B6] hover:shadow-[6px_6px_0_#000000]`}
               >
-                <div className={`shrink-0 p-3 rounded-full border-[2px] border-black ${isHighlighted ? 'bg-white' : 'bg-[#FFF2D0]'}`}>
+                <div className={`shrink-0 p-3 rounded-full border-[2px] border-black transition-colors duration-300 bg-[#FFF2D0] group-hover:bg-white`}>
                   <Icon size={28} strokeWidth={2.5} className="text-black" />
                 </div>
                 <div className="flex flex-col pt-1">
-                  <h3 className="text-xl font-black text-black mb-2">
-                    {step.title}
+                  <h3 className="text-xl font-black text-black mb-2 transition-colors duration-300">
+                    {staticFeaturesMap[step.tag]?.title || step.title}
                   </h3>
-                  <p className={`text-sm font-medium leading-relaxed ${isHighlighted ? 'text-red-900/80' : 'text-gray-600'}`}>
-                    {step.desc}
+                  <p className={`text-sm font-medium leading-relaxed transition-colors duration-300 text-gray-600 group-hover:text-red-900/90`}>
+                    {staticFeaturesMap[step.tag]?.desc || step.desc}
                   </p>
                 </div>
               </div>

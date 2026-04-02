@@ -11,8 +11,8 @@ export const profileData = {
     description: "Hi, I'm Nuryasin (XINN) — your data storyteller. I turn complex, noisy datasets into clean, human stories. As an evolving junior data analyst, I am highly passionate about uncovering hidden insights and growing my skills through every small increment.",
     contactText: "Contact me",
     socials: [
-        { icon: Github, href: "#" },
-        { icon: Linkedin, href: "#" },
+        { icon: Github, href: "https://github.com/Yayas-al" },
+        { icon: Linkedin, href: "https://www.linkedin.com/in/muhamad-nuryasin-alkhafid/" },
         { icon: Facebook, href: "#" },
     ],
     profileImage: "/my-notion-face-transparent.png",
