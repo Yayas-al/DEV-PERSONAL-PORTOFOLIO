@@ -85,7 +85,7 @@ export const Navbar = () => {
                 setIsMobileMenuOpen(false);
                 scrollToContact();
               }}>
-                Contact
+                JUstContact
               </Button>
             </div>
           </div>
